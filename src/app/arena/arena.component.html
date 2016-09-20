@@ -1,0 +1,39 @@
+<h2 class="text-center">
+    Welcome to Arena!
+</h2>
+<p class="text-center"><button class="btn btn-danger" *ngIf="!started" (click)="toggleRound()">Start Round</button></p>
+<div class="row" *ngIf="started">
+    <div class="col-md-12 text-center">
+        <h3>{{monster.name}} Occured!</h3>
+    </div>
+    <div class="col-md-6">
+        <div class="progress">
+            <div class="progress-bar progress-bar-danger" role="progressbar" [attr.aria-valuenow]="player.health" aria-valuemin="0" [attr.aria-valuemax]="player.maxHealth" [style.width]="(player.health / player.maxHealth)*100 + '%'">
+                {{player.name}}: {{player.health}}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="progress">
+            <div class="progress-bar progress-bar-danger" role="progressbar" [attr.aria-valuenow]="monster.health" aria-valuemin="0" [attr.aria-valuemax]="monster.maxHealth" [style.width]="(monster.health / monster.maxHealth)*100 + '%'">
+                {{monster.name}}: {{monster.health}}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 text-center">
+        <button class="btn btn-primary" (click)="attack()" *ngIf="!resultMsg.length">Attack!</button>
+        <button class="btn btn-success" (click)="loot()" *ngIf="resultMsg.length">{{resultMsg}}</button>
+    </div>
+    <div class="col-md-12 text-center">
+        <p class="center">
+            Items to use:
+        </p>
+        <button class="btn btn-success" (click)="useItem(item)" *ngFor="let item of player.inventory | disposable">{{item.name}}</button>
+    </div>
+    <div class="col-md-12">
+        <ul class="list-group">
+            <li class="list-group-item " *ngFor="let log of roundLog ; let even=even" [ngClass]="{ 'list-group-item-info': even, 'list-group-item-warning': !even }">{{log}}</li>
+            <!-- <li class="list-group-item list-group-item-warning">Third item</li> -->
+        </ul>
+    </div>
+</div>

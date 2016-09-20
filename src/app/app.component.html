@@ -1,3 +1,32 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>
+          {{title}}
+        </h1>
+            <div class="row">
+                <div class="col-lg-4">
+                    <h3>Hero Stats</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">Name <span class="badge">{{player.name}}</span></li>
+                        <li class="list-group-item">Health <span class="badge">{{player.health}} / {{player.maxHealth}}</span></li>
+                        <li class="list-group-item">Damage <span class="badge">{{player.damage}}</span></li>
+                        <li class="list-group-item">Gold <span class="badge">{{player.gold}}</span></li>
+                        <li class="list-group-item">Exp <span class="badge">{{player.exp}}</span></li>
+                        <li class="list-group-item">Inventory: <span *ngFor="let i of player.inventory">{{i.name}}</span> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h3 (change)="myValueChange($event);">Available Locations</h3>
+                    <p *ngIf="roundStarted">
+                        You can't change location while battle!
+                    </p>
+                    <ul  class="list-group" *ngIf="!roundStarted">
+                        <li *ngFor="let link of links" class="list-group-item"><a href="" routerLink="{{link.href}}" >{{link.name}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
