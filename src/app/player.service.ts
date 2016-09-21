@@ -10,7 +10,7 @@ export class PlayerService {
     roundStarted$ = this.roundStartedSource.asObservable();
 
     constructor() {
-        this.player = new Player(prompt('Name:') || 'Pidor', 1, 10, 0, 0);
+        this.player = new Player('Ken', 1, 10, 0, 0);
         this.player.inventory.push({
             name: 'Heal Potion (+5)',
             cost: 5,

@@ -25,7 +25,7 @@ export abstract class Creature {
         }
     };
     use(item, target){
-        item.bonus.val >= 0 ? target[item.bonus.stat] += item.bonus.val : target[item.bonus.stat] -= item.bonus.stat;
+        target[item.bonus.stat] += item.bonus.val;
         item.disposable ? target.inventory.splice(target.inventory.indexOf(item), 1) : null;
         target.inventory = target.inventory.slice();
     }
