@@ -5,12 +5,14 @@ export abstract class Creature {
     maxHealth: number;
     damage: number;
     inventory: Item[];
-    constructor(name,damage, maxHealth) {
+    power: number;
+    constructor(name, damage, maxHealth) {
         this.name = name;
         this.health = maxHealth;
         this.maxHealth = maxHealth;
         this.damage = damage;
         this.inventory = [];
+        this.power = 0;
     }
     abstract attack();
     heal(hp: number) {
@@ -22,4 +24,9 @@ export abstract class Creature {
             this.health = this.maxHealth;
         }
     };
+    use(item, target){
+        item.bonus.val >= 0 ? target[item.bonus.stat] += item.bonus.val : target[item.bonus.stat] -= item.bonus.stat;
+        item.disposable ? target.inventory.splice(target.inventory.indexOf(item), 1) : null;
+        target.inventory = target.inventory.slice();
+    }
 }

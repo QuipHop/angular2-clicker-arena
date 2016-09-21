@@ -13,4 +13,8 @@ export class Player extends Creature {
     heal(hp) {
         super.heal(hp);
     };
+
+    use(item, target){
+        super.use(item, target);
+    }
 }

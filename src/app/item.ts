@@ -1,9 +1,10 @@
 export interface Item {
     name: string;
     cost: number;
+    target: string,
     bonus: {
         val: number,
-        stat: string
+        stat: string,
     },
     disposable: boolean;
 }

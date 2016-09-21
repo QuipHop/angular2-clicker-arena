@@ -4,6 +4,7 @@ import { MonsterService } from '../monster.service';
 import { Monster } from '../monster';
 import { Player } from '../player';
 import { DisposablePipe } from '../disposable.pipe';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-arena',
@@ -17,7 +18,7 @@ export class ArenaComponent implements OnInit, OnDestroy {
     resultMsg: string = '';
     roundLog: any[] = [];
 
-    constructor(public playerService: PlayerService, public monsterService: MonsterService) {
+    constructor(public playerService: PlayerService, public monsterService: MonsterService, private router: Router) {
         playerService.roundStarted$.subscribe(
             started => {
                 // Do something
@@ -68,18 +69,16 @@ export class ArenaComponent implements OnInit, OnDestroy {
         this.player.exp += this.monster.maxHealth;
         this.started = false;
         this.playerService.startRound(this.started);
+        this.player.health <= 0 ? this.router.navigate(['/shelter']) : null;
     }
 
     logRound(t1, t2) {
         let date = new Date();
         let _date = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-        this.roundLog.unshift(`${_date} ; ${this.player.name} hit ${t1} damage! `);
-        this.roundLog.unshift(`${_date} ; ${this.monster.name} hit ${t2} damage!`);
+        this.roundLog.unshift(`${_date} ; ${this.player.name} hit ${t1} damage! `, `${_date} ; ${this.monster.name} hit ${t2} damage!`);
     }
 
-    useItem(item){
-        this.player[item.bonus.stat] += item.bonus.val;
-        this.player.inventory.splice(this.player.inventory.indexOf(item), 1);
-        this.player.inventory = this.player.inventory.slice();
+    useItem(item) {
+        this.player.use(item, this[item.target]);
     }
 }

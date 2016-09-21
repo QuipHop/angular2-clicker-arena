@@ -1,3 +1,41 @@
 <p>
-  shop works!
+    Welcome to the Shop of Anoos!
 </p>
+<div class="col-md-6">
+    <h3>Shop</h3>
+    <table class="table table-stripped table-hover">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Buy</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of itemList">
+                <td>{{item.name}}</td>
+                <td>{{item.cost}}</td>
+                <td><a href="#" (click)="buy(item)">Buy</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="col-md-6">
+    <h3>You</h3>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Sell</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of player.inventory">
+                <td>{{item.name}}</td>
+                <td>{{item.cost}}</td>
+                <td><a href="#" (click)="sell(item)">Sell</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
