@@ -73,6 +73,8 @@ export class ArenaComponent implements OnInit, OnDestroy {
         } else {
             this.player.gold += this.monster.gold;
             this.player.exp += this.monster.maxHealth;
+            this.player.inventory = this.player.inventory.concat(this.monster.inventory);
+            this.player.updateBonus();
         }
 
     }

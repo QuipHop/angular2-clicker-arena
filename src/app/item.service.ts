@@ -12,8 +12,7 @@ export class ItemService {
     }
 
     findById(id: number) {
-        return ITEMS.find((value:Item):any => {
-            console.log("VAL", value, id);
+        return ITEMS.find((value:Item, index, ITEMS):any => {
             return value.id == id;
         });
     }

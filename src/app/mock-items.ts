@@ -14,6 +14,17 @@ export const ITEMS: Item[] = [
     },
     {
         id: 12,
+        name: 'Wooden Stick (+1)',
+        cost: 2,
+        target: 'player',
+        bonus: {
+            val: 1,
+            stat: 'power'
+        },
+        disposable: false,
+    },
+    {
+        id: 13,
         name: 'Wooden Sword (+2)',
         cost: 10,
         target: 'player',
@@ -24,12 +35,12 @@ export const ITEMS: Item[] = [
         disposable: false,
     },
     {
-        id: 13,
-        name: 'Leather Armon (+4)',
+        id: 14,
+        name: 'Leather Armon (+2)',
         cost: 20,
         target: 'player',
         bonus: {
-            val: 4,
+            val: 2,
             stat: 'maxHealth',
         },
         disposable: false,

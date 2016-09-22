@@ -7,7 +7,7 @@ export class Monster extends Creature {
         this.gold = gold;
     }
     attack(bonus = 0): number {
-        return Math.floor(Math.random() * this.damage) + bonus;
+        return super.attack(bonus);
     };
 
     heal(hp) {
