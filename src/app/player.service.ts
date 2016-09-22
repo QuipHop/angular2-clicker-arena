@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Player } from './player';
 import { Item } from './item'
 import { Subject }    from 'rxjs/Subject';
+import { ItemService } from './item.service';
 
 @Injectable()
 export class PlayerService {
@@ -9,18 +10,10 @@ export class PlayerService {
     private roundStartedSource = new Subject<boolean>();
     roundStarted$ = this.roundStartedSource.asObservable();
 
-    constructor() {
-        this.player = new Player('Ken', 1, 10, 0, 0);
-        this.player.inventory.push({
-            name: 'Heal Potion (+5)',
-            cost: 5,
-            disposable: true,
-            bonus: {
-                val: 5,
-                stat: 'health',
-            },
-            target: 'player'
-        });
+    constructor(private itemService: ItemService) {
+        this.player = new Player('Ken', 1, 10, 5, 0);
+        let item = this.itemService.findById(11);
+        this.player.inventory.push(item);
     }
 
     getPlayer(): Player {

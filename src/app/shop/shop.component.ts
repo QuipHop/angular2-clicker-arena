@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../player.service';
+import { ItemService } from '../item.service';
 import { Player } from '../player';
 import { Item } from '../item';
 
@@ -9,54 +10,29 @@ import { Item } from '../item';
     styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-    itemList: Item[] = [
-        {
-            name: 'health potion(+5)',
-            cost: 5,
-            target: 'player',
-            bonus: {
-                val: 5,
-                stat: 'health'
-            },
-            disposable: true,
-        },
-        {
-            name: 'Wooden Sword (+2)',
-            cost: 10,
-            target: 'player',
-            bonus: {
-                val: 1,
-                stat: 'power',
-            },
-            disposable: false,
-        },
-        {
-            name: 'Leather Armon (+4)',
-            cost: 20,
-            target: 'player',
-            bonus: {
-                val: 4,
-                stat: 'health',
-            },
-            disposable: false,
-        }
-    ];
+    itemList: Item[] = [];
     player: Player;
-    constructor(private playerService: PlayerService) { }
+    constructor(private playerService: PlayerService, private itemService: ItemService) { }
 
     ngOnInit() {
         this.player = this.playerService.getPlayer();
+        this.itemList = this.itemService.getItems();
     }
-
+    ngOnDestroy() {
+        this.playerService.savePlayer(this.player);
+    }
     buy(item){
         if(this.player.gold >= item.cost){
             this.player.inventory.push(item);
+            this.player.updateBonus();
         }
         return false;
     }
     sell(item){
         this.player.gold += item.cost;
         this.player.inventory.splice(this.player.inventory.indexOf(item), 1);
+        this.player.updateBonus();
         return false;
     }
+
 }

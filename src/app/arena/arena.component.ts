@@ -65,11 +65,16 @@ export class ArenaComponent implements OnInit, OnDestroy {
         }
     }
     loot() {
-        this.player.gold += this.monster.gold;
-        this.player.exp += this.monster.maxHealth;
         this.started = false;
         this.playerService.startRound(this.started);
-        this.player.health <= 0 ? this.router.navigate(['/shelter']) : null;
+        if (this.player.health <= 0) {
+            this.player.health <= 0 ? this.router.navigate(['/shelter']) : null;
+
+        } else {
+            this.player.gold += this.monster.gold;
+            this.player.exp += this.monster.maxHealth;
+        }
+
     }
 
     logRound(t1, t2) {

@@ -14,7 +14,13 @@ export abstract class Creature {
         this.inventory = [];
         this.power = 0;
     }
-    abstract attack();
+    attack(bonus) {
+        // this.inventory.forEach(item => {
+        //     if (!item.disposable && item.bonus.stat == 'power') bonus += item.bonus.val;
+        // });
+        // console.log("BONUS POINTS: " + bonus);
+        return this.damage + this.power;
+    };
     heal(hp: number) {
         console.log(`${this.name} heals himself!`);
         if (this.health + hp < this.maxHealth) {
@@ -24,9 +30,15 @@ export abstract class Creature {
             this.health = this.maxHealth;
         }
     };
-    use(item, target){
+    use(item, target) {
         target[item.bonus.stat] += item.bonus.val;
         item.disposable ? target.inventory.splice(target.inventory.indexOf(item), 1) : null;
         target.inventory = target.inventory.slice();
+    }
+
+    updateBonus(){
+        this.inventory.forEach(item => {
+            if (!item.disposable) this[item.bonus.stat] += item.bonus.val;
+        });
     }
 }

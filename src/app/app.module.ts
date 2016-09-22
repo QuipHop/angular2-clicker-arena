@@ -9,6 +9,7 @@ import { ArenaComponent } from './arena/arena.component';
 import { ShelterComponent } from './shelter/shelter.component';
 import { PlayerService } from './player.service';
 import { MonsterService } from './monster.service';
+import { ItemService } from './item.service';
 import { ShopComponent } from './shop/shop.component';
 import { TrainingComponent } from './training/training.component';
 import { DisposablePipe } from './disposable.pipe';
@@ -28,7 +29,7 @@ import { DisposablePipe } from './disposable.pipe';
         HttpModule,
         routing
     ],
-    providers: [PlayerService, MonsterService],
+    providers: [PlayerService, MonsterService, ItemService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

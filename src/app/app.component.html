@@ -10,7 +10,7 @@
                     <ul class="list-group">
                         <li class="list-group-item">Name <span class="badge">{{player.name}}</span></li>
                         <li class="list-group-item">Health <span class="badge">{{player.health}} / {{player.maxHealth}}</span></li>
-                        <li class="list-group-item">Damage <span class="badge">{{player.damage}}</span></li>
+                        <li class="list-group-item">Damage <span class="badge">{{player.damage}} {{player.power > 0 ? '+' +  player.power : ''}}</span></li>
                         <li class="list-group-item">Gold <span class="badge">{{player.gold}}</span></li>
                         <li class="list-group-item">Exp <span class="badge">{{player.exp}}</span></li>
                         <li class="list-group-item">Inventory: <span *ngFor="let i of player.inventory">{{i.name}}</span> </li>

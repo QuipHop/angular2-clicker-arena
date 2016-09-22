@@ -26,7 +26,7 @@ export class AppComponent {
         },
         {
             href: '/training',
-            name: 'Training Station'
+            name: 'Training Yard'
         }
     ];
     subscription: Subscription;
@@ -41,9 +41,9 @@ export class AppComponent {
     ngOnInit() {
         this.player = this.playerService.getPlayer();
     }
-    
+
     ngOnDestroy() {
-      // prevent memory leak when component destroyed
+      // prevent memsory leak when component destroyed
       this.subscription.unsubscribe();
     }
 }

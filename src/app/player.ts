@@ -7,14 +7,16 @@ export class Player extends Creature {
         this.gold = gold;
         this.exp = exp;
     }
+    
     attack(bonus = 0): number {
-        return this.damage;
+        return super.attack(bonus);
     };
+
     heal(hp) {
         super.heal(hp);
     };
 
-    use(item, target){
+    use(item, target) {
         super.use(item, target);
     }
 }
