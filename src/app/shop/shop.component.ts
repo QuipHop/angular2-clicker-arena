@@ -18,18 +18,19 @@ export class ShopComponent implements OnInit {
         this.player = this.playerService.getPlayer();
         this.itemList = this.itemService.getItems();
     }
+
     ngOnDestroy() {
         this.playerService.savePlayer(this.player);
     }
-    buy(item){
-        if(this.player.gold >= item.cost){
+    buy(item) {
+        if (this.player.gold >= item.cost) {
             this.player.inventory.push(item);
             this.player.gold -= item.cost;
             this.player.updateBonus();
         }
         return false;
     }
-    sell(item){
+    sell(item) {
         this.player.gold += item.cost;
         this.player.inventory.splice(this.player.inventory.indexOf(item), 1);
         this.player.updateBonus();
