@@ -24,4 +24,8 @@ export class Player extends Creature {
         this.exp--;
         this[stat]++;
     }
+
+    updateBonus(item, decr?){
+        super.updateBonus(item, decr);
+    }
 }

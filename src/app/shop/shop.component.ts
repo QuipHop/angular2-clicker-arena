@@ -26,14 +26,14 @@ export class ShopComponent implements OnInit {
         if (this.player.gold >= item.cost) {
             this.player.inventory.push(item);
             this.player.gold -= item.cost;
-            this.player.updateBonus();
+            this.player.updateBonus(item);
         }
         return false;
     }
     sell(item) {
         this.player.gold += item.cost;
+        this.player.updateBonus(item, true);
         this.player.inventory.splice(this.player.inventory.indexOf(item), 1);
-        this.player.updateBonus();
         return false;
     }
 
