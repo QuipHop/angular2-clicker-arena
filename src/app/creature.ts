@@ -38,7 +38,9 @@ export abstract class Creature {
 
     updateBonus(){
         this.inventory.forEach(item => {
-            if (!item.disposable) this[item.bonus.stat] += item.bonus.val;
+            if (!item.disposable) {
+                this[item.bonus.stat] += item.bonus.val;
+            }
         });
     }
 }

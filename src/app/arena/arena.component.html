@@ -4,7 +4,8 @@
 <p class="text-center"><button class="btn btn-danger" *ngIf="!started" (click)="toggleRound()">Start Round</button></p>
 <div class="row" *ngIf="started">
     <div class="col-md-12 text-center">
-        <h3>{{monster.name}} Occured!</h3>
+        <h2>Wave {{waveCount}}</h2>
+        <h3>{{monster.name}} {{showEquipment(monster.inventory)}} Occured!</h3>
     </div>
     <div class="col-md-6">
         <div class="progress">
@@ -24,7 +25,7 @@
         <button class="btn btn-primary" (click)="attack()" *ngIf="!resultMsg.length">Attack!</button>
         <button class="btn btn-success" (click)="loot()" *ngIf="resultMsg.length">{{resultMsg}}</button>
     </div>
-    <div class="col-md-12 text-center">
+    <div class="col-md-12 text-center" *ngIf="player.health > 0">
         <p class="center">
             Items to use:
         </p>

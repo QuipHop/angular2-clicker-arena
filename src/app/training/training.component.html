@@ -1,3 +1,10 @@
-<p>
-  training works!
-</p>
+<h2 class="text-center">
+  Welcome to the Train Yard!
+</h2>
+<div class="col-md-12 text-center" *ngIf="this.player.exp > 0">
+    <button class="btn btn-success" (click)="updateStat('maxHealth')">Health +1</button>
+    <button class="btn btn-success" (click)="updateStat('damage')">Damage +1</button>
+</div>
+<div class="col-md-12 text-center" *ngIf="this.player.exp <= 0">
+    <h3>You should gain more exp!</h3>
+</div>

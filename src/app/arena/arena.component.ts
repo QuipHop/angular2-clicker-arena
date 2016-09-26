@@ -17,7 +17,7 @@ export class ArenaComponent implements OnInit, OnDestroy {
     monster: Monster;
     resultMsg: string = '';
     roundLog: any[] = [];
-
+    waveCount;
     constructor(public playerService: PlayerService, public monsterService: MonsterService, private router: Router) {
         playerService.roundStarted$.subscribe(
             started => {
@@ -42,6 +42,7 @@ export class ArenaComponent implements OnInit, OnDestroy {
     }
 
     spawnMonster() {
+        this.waveCount = this.monsterService.wave;
         this.monster = this.monsterService.getMonster();
     }
 
@@ -58,6 +59,7 @@ export class ArenaComponent implements OnInit, OnDestroy {
     checkResults() {
         if (this.player.health <= 0) {
             this.resultMsg = "You Are Dead :(";
+            this.monsterService.wave--;
             return false;
         }
         if (this.monster.health <= 0) {
@@ -87,5 +89,14 @@ export class ArenaComponent implements OnInit, OnDestroy {
 
     useItem(item) {
         this.player.use(item, this[item.target]);
+    }
+
+    showEquipment(inv){
+        let str = '';
+        inv.length ? str = 'With ' : null;
+        inv.forEach(i => {
+            str += i.name;
+        });
+        return str;
     }
 }

@@ -7,7 +7,7 @@ export class Player extends Creature {
         this.gold = gold;
         this.exp = exp;
     }
-    
+
     attack(bonus = 0): number {
         return super.attack(bonus);
     };
@@ -18,5 +18,10 @@ export class Player extends Creature {
 
     use(item, target) {
         super.use(item, target);
+    }
+
+    updateStat(stat){
+        this.exp--;
+        this[stat]++;
     }
 }

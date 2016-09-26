@@ -24,6 +24,7 @@ export class ShopComponent implements OnInit {
     buy(item){
         if(this.player.gold >= item.cost){
             this.player.inventory.push(item);
+            this.player.gold -= item.cost;
             this.player.updateBonus();
         }
         return false;
